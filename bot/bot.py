@@ -17,7 +17,7 @@ def start(update:Update,context:CallbackContext):
     bot.sendPhoto(
         chat_id,
         pic,
-        caption=f"Hi! My name is PyBot: A Python based bot.\nI was created by accident by my master.",
+        caption=f"Hi! My name is PyBot: A Python based bot.\nI was created by an accident by my master.",
         parse_mode=telegram.ParseMode.MARKDOWN,
     )
 start_value = CommandHandler("start", start)
