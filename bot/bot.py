@@ -1,4 +1,7 @@
 import telegram
+import sys
+import random
+from os import execl
 from telegram import *
 from telegram.ext import *
 import random
@@ -8,6 +11,26 @@ token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
 bot = Bot(token)
 updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
+
+#==================/restart=====================
+def restart(update:Update,context:CallbackContext):
+    user = update.message.from_user
+    if user.id == 1210937719:
+        bot.send_message(
+            "**Restarted.**\n /ping me  to check if I am online, actually it takes 10 to seconds for restarting",
+            parse_mode=telegram.ParseMode.MARKDOWN,
+        )
+        bot.disconnect()
+        execl(sys.executable, sys.executable, *sys.argv)
+    else:
+        bot.send_message(
+            chat_id=update.effective_chat.id,
+            text="Only my owner can use this command."
+            )
+start_value = CommandHandler("restart", restart)
+dispatcher.add_handler(start_value)
+#===============================================
+
 #===================/gandu======================
 def gandu(update:Update,context:CallbackContext):
     bot.send_message(
