@@ -7,22 +7,12 @@ from telegram import *
 from telegram.ext import *
 import random
 import reply
-
+from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
 bot = Bot(token)
 updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
-
-#==================/restart=====================
-
-def restart(update:Update, context:CallbackContext):
-    restart_message = bot.sendMessage(
-        "Restarting, Please wait!", context.bot, update)
-    with open(".restartmsg", "w") as f:
-        f.truncate(0)
-        f.write(f"{restart_message.chat.id}\n{restart_message.message_id}\n")
-    os.execl(executable, executable, "bot.py")
-#===============================================
 
 #===================/gandu======================
 def gandu(update:Update,context:CallbackContext):
@@ -34,7 +24,7 @@ def gandu(update:Update,context:CallbackContext):
 start_value = CommandHandler("gandu", gandu)
 dispatcher.add_handler(start_value)
 #================================================
-
+"""
 #===================/insult======================
 def insult(update: Update, context: CallbackContext):
     bot.send_message(
@@ -45,7 +35,7 @@ def insult(update: Update, context: CallbackContext):
 start_value = CommandHandler("insult", insult)
 dispatcher.add_handler(start_value)
 #================================================
-
+"""
 #=====================/beta======================
 def beta(update: Update, context:CallbackContext):
     user = update.message.from_user
@@ -73,8 +63,6 @@ def beta(update: Update, context:CallbackContext):
 start_value=CommandHandler("beta", beta)
 dispatcher.add_handler(start_value)
 #================================================
-
-
 
 updater.start_polling()
 updater.idle()
