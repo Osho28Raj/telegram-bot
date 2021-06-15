@@ -1,5 +1,6 @@
 import telegram
 import os
+from sys import executable
 import random
 from os import execl
 from telegram import *
@@ -13,24 +14,14 @@ updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
 
 #==================/restart=====================
-def restart(update:Update,context:CallbackContext):
-    user = update.message.from_user
-    if user.id == 1210937719:
-        bot.send_message(
-            "**Restarted.**\n /ping me  to check if I am online, actually it takes 10 to seconds for restarting",
-            parse_mode=telegram.ParseMode.MARKDOWN,
-        )
-        # bot.bot.disconnect()
-        # execl(sys.executable, sys.executable, *sys.argv)
-        os.system('cmd /k "heroku ps:scale worker=0"')
-        os.system('cmd /k "heroku ps:scale worker=1"')
-    else:
-        bot.send_message(
-            chat_id=update.effective_chat.id,
-            text="Only my owner can use this command."
-            )
-start_value = CommandHandler("restart", restart)
-dispatcher.add_handler(start_value)
+
+def restart(update:Update, context:CallbackContext):
+    restart_message = bot.sendMessage(
+        "Restarting, Please wait!", context.bot, update)
+    with open(".restartmsg", "w") as f:
+        f.truncate(0)
+        f.write(f"{restart_message.chat.id}\n{restart_message.message_id}\n")
+    os.execl(executable, executable, "bot.py")
 #===============================================
 
 #===================/gandu======================
