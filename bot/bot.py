@@ -1,5 +1,5 @@
 import telegram
-import sys
+import os
 import random
 from os import execl
 from telegram import *
@@ -20,8 +20,10 @@ def restart(update:Update,context:CallbackContext):
             "**Restarted.**\n /ping me  to check if I am online, actually it takes 10 to seconds for restarting",
             parse_mode=telegram.ParseMode.MARKDOWN,
         )
-        bot.bot.disconnect()
-        execl(sys.executable, sys.executable, *sys.argv)
+        # bot.bot.disconnect()
+        # execl(sys.executable, sys.executable, *sys.argv)
+        os.system('cmd /k "heroku ps:scale worker=0"')
+        os.system('cmd /k "heroku ps:scale worker=1"')
     else:
         bot.send_message(
             chat_id=update.effective_chat.id,
