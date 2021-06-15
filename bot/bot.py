@@ -20,7 +20,7 @@ def restart(update:Update,context:CallbackContext):
             "**Restarted.**\n /ping me  to check if I am online, actually it takes 10 to seconds for restarting",
             parse_mode=telegram.ParseMode.MARKDOWN,
         )
-        bot.disconnect()
+        bot.bot.disconnect()
         execl(sys.executable, sys.executable, *sys.argv)
     else:
         bot.send_message(
