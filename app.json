@@ -1,0 +1,20 @@
+{
+    "name": "Useless Bot",
+    "description": "Just a sample, made in python using Telethon.",
+    "logo": "https://telegra.ph/file/2a4a8db2289dc6832c14a.jpg",
+    "keywords": [
+        "Telethon",
+        "telegram",
+        "bot",
+        "python"
+    ],
+    "repository": "https://github.com/Osho28Raj/telegram-bot",
+    "success_url": "https://t.me/o_s_h_o_r_a_j",
+    "stack": "container",
+    "env": {
+        "USER_ID": {
+            "description": "Just add your userid",
+            "value": ""
+        },
+    }
+}
