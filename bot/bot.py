@@ -1,20 +1,42 @@
 import telegram
-import os
-from sys import executable
 import random
-from os import execl
 from telegram import *
 from telegram.ext import *
 import random
-import reply
-from git import Repo
-from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
+import reply as reply
+import cmd
 token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
 bot = Bot(token)
+pic = "https://telegra.ph/file/dab7aa0e02fe075f35dff.jpg"
 updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
+bot.set_my_commands(cmd.botcmds)
+#===================/start======================
+def start(update:Update,context:CallbackContext):
+    chat_id = update.effective_chat.id
+    bot.sendPhoto(
+        chat_id,
+        pic,
+        caption=f"Hi! My name is PyBot: A Python based bot.\nI was created by accident by my master.",
+        parse_mode=telegram.ParseMode.MARKDOWN,
+    )
+start_value = CommandHandler("start", start)
+dispatcher.add_handler(start_value)
+#===============================================
 
-#===================/gandu======================
+#===================/owner======================
+def owner(update: Update, context: CallbackContext):
+    owner_id = "[Ø𝖘𝖍Ø](tg://user?id=1210937719)"
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text=f"I was made by my master **{owner_id}**",
+        parse_mode=telegram.ParseMode.MARKDOWN,
+    )
+start_value = CommandHandler("owner", owner)
+dispatcher.add_handler(start_value)
+#================================================
+
+#===================/gandu=======================
 def gandu(update:Update,context:CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
@@ -24,18 +46,41 @@ def gandu(update:Update,context:CallbackContext):
 start_value = CommandHandler("gandu", gandu)
 dispatcher.add_handler(start_value)
 #================================================
-"""
-#===================/insult======================
-def insult(update: Update, context: CallbackContext):
+
+#===================/slap========================
+def slap(update: Update, context: CallbackContext):
+    def slapping(user_id, owner_id):
+        owner_id = "[Ø𝖘𝖍Ø](tg://user?id=1210937719)"
+        user = update.message.from_user
+        user_id = user.id
+        first_name = user.first_name
+        slapped = f"[{first_name}](tg://user?id={user_id})"
+        temp = random.choice(reply.SLAP)
+        item = random.choice(reply.ITEMS)
+        hit = random.choice(reply.HIT)
+        throw = random.choice(reply.THROW)
+        where = random.choice(reply.WHERE)
+        return temp.format(
+            user1=owner_id,
+            victim=slapped,
+            item=item,
+            hits=hit,
+            throws=throw,
+            where=where,
+        )
+    owner_id = "[Ø𝖘𝖍Ø](tg://user?id=1210937719)"
+    user = update.message.from_user
+    user_id = user.id
+    caption = slapping(user_id, owner_id)
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text=f"`{random.choice(reply.INSULTS)}`",
+        text=f"{caption}",
         parse_mode=telegram.ParseMode.MARKDOWN,
     )
-start_value = CommandHandler("insult", insult)
+start_value = CommandHandler("slap", slap)
 dispatcher.add_handler(start_value)
 #================================================
-"""
+
 #=====================/beta======================
 def beta(update: Update, context:CallbackContext):
     user = update.message.from_user

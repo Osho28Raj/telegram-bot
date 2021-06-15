@@ -1,4 +1,6 @@
 import random
+from telegram import *
+from telegram.ext import *
 
 GDNOON = [
     "My wishes will always be with you, Morning wish to make you feel fresh, Afternoon wish to accompany you, Evening wish to refresh you, Night wish to comfort you with sleep, Good Afternoon Dear!",
@@ -480,7 +482,6 @@ THANOSS = [
     "Marzi Ka Sex Pap Nahi Hota.. Piche Se Dalne Wala Kabhi Baap Nahi Hota.. Condom Zarur Lagana Mere Dost Qki.. Sex K Waqt Popat Ke Pass Dimag Nahi Hota.",
     "Uss Ne Hothon Se Chhu Kar Lowd* Pe Nasha Kar Diya; Lu*D Ki Baat To Aur Thi, Uss Ne To Jhato* Ko Bhi Khada Kar Diya!",
 ]
-ABUSEHARD = []
 HELLOSTR = [
     "Hi !",
     "‘Ello, gov'nor!",
@@ -504,7 +505,7 @@ HELLOSTR = [
     "Oh retarded gey! Well Hello",
 ]
 
-SLAP_TEMPLATES = [
+SLAP = [
     "{user1} {hits} {victim} with a {item}.",
     "{user1} {hits} {victim} in the face with a {item}.",
     "{user1} {hits} {victim} around a bit with a {item}.",
@@ -601,22 +602,24 @@ HIT = [
 WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
 
 
-async def slap(replied_user, event, DEFAULTUSER):
+def slap(user_id, owner_id):
     """Construct a funny slap sentence !!"""
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    username = replied_user.user.username
+    owner_id = "[Ø𝖘𝖍Ø](tg://user?id=1210937719)"
+    user = update.message.from_user
+    user_id = user.id
+    first_name = user.first_name
+    username = user.username
     if username:
         slapped = "@{}".format(username)
     else:
         slapped = f"[{first_name}](tg://user?id={user_id})"
-    temp = random.choice(SLAP_TEMPLATES)
+    temp = random.choice(SLAP)
     item = random.choice(ITEMS)
     hit = random.choice(HIT)
     throw = random.choice(THROW)
     where = random.choice(WHERE)
     return temp.format(
-        user1=DEFAULTUSER,
+        user1=owner_id,
         victim=slapped,
         item=item,
         hits=hit,
