@@ -3,7 +3,7 @@ from typing import Any
 from telegram import TelegramObject
 
 
-class BotCommand(TelegramObject):
+class bot(TelegramObject):
     __slots__ = ('description', '_id_attrs', 'command')
 
     def __init__(self, command: str, description: str, **_kwargs: Any):
