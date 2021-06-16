@@ -10,7 +10,6 @@ bot = Bot(token)
 pic = "https://telegra.ph/file/dab7aa0e02fe075f35dff.jpg"
 updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
-bot.set_my_commands(cmd.botcmds)
 #===================/start======================
 def start(update:Update,context:CallbackContext):
     chat_id = update.effective_chat.id
