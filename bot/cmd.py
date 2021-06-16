@@ -1,4 +1,4 @@
-from telegram import *
+from telegram import BotCommand
 class _BotCommands:
     def __init__(self):
         self.owner = "owner"
