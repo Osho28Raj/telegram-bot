@@ -11,6 +11,8 @@ class bot(TelegramObject):
         self.description = description
 
         self._id_attrs = (self.command, self.description)
+
+
 class _BotCommands:
     def __init__(self):
         self.owner = "owner"
