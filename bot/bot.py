@@ -4,7 +4,6 @@ from telegram import *
 from telegram.ext import *
 import random
 import reply as reply
-import cmd
 token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
 bot = Bot(token)
 pic = "https://telegra.ph/file/dab7aa0e02fe075f35dff.jpg"
