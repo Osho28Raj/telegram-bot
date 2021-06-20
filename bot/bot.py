@@ -4,7 +4,7 @@ from telegram import *
 from telegram.ext import *
 import random
 import reply as reply
-token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
+token = "1874572677:AAH4pxtnNCaJGcWktjKsXTUweaKgBkNU-LM"
 bot = Bot(token)
 pic = "https://telegra.ph/file/dab7aa0e02fe075f35dff.jpg"
 updater = Updater(token, use_context=True)
