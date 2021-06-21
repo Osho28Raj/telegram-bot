@@ -3,12 +3,14 @@ import random
 from telegram import *
 from telegram.ext import *
 import random
-import reply as reply
+import reply
+import  cmd
 token = "1874572677:AAEk3KyuFXeis7gFUEzPRIIBRuRmLkJbJls"
 bot = Bot(token)
 pic = "https://telegra.ph/file/dab7aa0e02fe075f35dff.jpg"
 updater = Updater(token, use_context=True)
 dispatcher=updater.dispatcher
+bot.set_my_commands(cmd.botcmds)
 #===================/start======================
 def start(update:Update,context:CallbackContext):
     chat_id = update.effective_chat.id
